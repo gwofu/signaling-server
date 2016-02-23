@@ -29,7 +29,8 @@ public class Deployer extends AbstractVerticle {
         
         logger.debug("totalInstnace=" + totalInstnace);
 
-        vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", new DeploymentOptions().setInstances(totalInstnace).setHa(ha));
+        //vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", new DeploymentOptions().setInstances(totalInstnace).setHa(ha));
+        vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", new DeploymentOptions());
     }
     
 }

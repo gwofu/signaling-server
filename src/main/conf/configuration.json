@@ -1,5 +1,0 @@
-{
-  "http.port" : 8443,
-  "total.instance" : 10,
-  "high.availability" : false
-}

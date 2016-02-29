@@ -1,13 +1,25 @@
 # signaling-server
 
 
-Executing Command
------------------
-java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -conf src/main/conf/configuration.json
+### Executing Command
+
+Use default logback.xml
+-----------------------
+java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log
+
+Connect to JConsole
+-------------------
+java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.local.only=false -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log
+
+java -jar signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.local.only=false -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log
 
 
-Notes
------
+For debugging
+-----------------------
+java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -Dvertx.options.blockedThreadCheckInterval=10000" -conf configuration.json --redirect-output > stdout.log
+
+### Notes
+
 There is a “mapping” between system properties and Vert.x Options as in:
 -Dvertx.options.workerPoolSize=20 
 

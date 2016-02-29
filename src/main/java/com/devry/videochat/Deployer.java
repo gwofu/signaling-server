@@ -1,8 +1,17 @@
+/**
+ * Deployer.java
+ * 
+ * Deploy Vert.x verticle with configuration set in configuration.json.
+ * 
+ * @author Gwowen Fu
+ *
+ */
 package com.devry.videochat;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.VertxOptions;
+import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.logging.SLF4JLogDelegateFactory;
@@ -13,24 +22,23 @@ public class Deployer extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        System.out.println("Main verticle has started, let's deploy some others...");
+        logger.debug("Main verticle has started, let's deploy some others...");
 
-        System.setProperty(LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
-
-        VertxOptions options = new VertxOptions();
-        options.setBlockedThreadCheckInterval(1000*60*60);
-
-
-        int totalInstnace = config().getInteger("total.instance", 1);
+        int port = config().getInteger("http.port", 8943);
+        int instnaces = config().getInteger("total.instances", 1);
         boolean ha = config().getBoolean("high.availability", false);
+        String keystorePath = config().getString("keystore.path", "keystore.jks");
+        String keystorePass = config().getString("keystore.pass", "password");
 
-        System.out.println("totalInstnace=" + totalInstnace);
-        System.out.println("ha=" + ha);
+        logger.debug("port=" + port);
+        logger.debug("instnaces=" + instnaces);
+        logger.debug("ha=" + ha);
         
-        logger.debug("totalInstnace=" + totalInstnace);
-
-        //vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", new DeploymentOptions().setInstances(totalInstnace).setHa(ha));
-        vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", new DeploymentOptions());
+        vertx.deployVerticle("com.devry.videochat.VideoChatVerticle", 
+            new DeploymentOptions().setInstances(instnaces).setHa(ha).setConfig(
+                    new JsonObject().put("http.port", port)
+                    .put("keystore.path", keystorePath)
+                    .put("keystore.pass", keystorePass)));
     }
     
 }

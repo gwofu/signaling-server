@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <property name="FILE_PATH" value="logs/videochat.log" />
+  <property name="FILE_PATH" value="logs/signaling-server.log" />
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <layout class="ch.qos.logback.classic.PatternLayout">
@@ -13,7 +13,7 @@
     <file>${FILE_PATH}</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
-      <fileNamePattern>videochat.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>logs/videochat.%d{yyyy-MM-dd}.log</fileNamePattern>
 
       <!-- keep 30 days' worth of history -->
       <maxHistory>30</maxHistory>

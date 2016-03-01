@@ -7,6 +7,8 @@ Use default logback.xml
 -----------------------
 java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log
 
+java -jar signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log
+
 Connect to JConsole
 -------------------
 java -jar target/signaling-server-0.0.1-SNAPSHOT-fat.jar start --java-opts="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.local.only=false -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory" -conf configuration.json --redirect-output > out.log

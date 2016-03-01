@@ -30,6 +30,7 @@ import io.vertx.core.net.JksOptions;
 import io.vertx.core.shareddata.LocalMap;
 import io.vertx.core.shareddata.SharedData;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.StaticHandler;
 
 public class VideoChatVerticle extends AbstractVerticle {
 
@@ -61,6 +62,8 @@ public class VideoChatVerticle extends AbstractVerticle {
             response.putHeader("content-type", "text/html")
                     .end("<h1>Hello from DeVry Video Chat Signaling Server!</h1>");
         });
+        // Serve static resources from the /assets directory
+        router.route("/client/*").handler(StaticHandler.create("client"));
 
         HttpServerOptions options = new HttpServerOptions().setSsl(true).setWebsocketSubProtocols("wss")
                 .setKeyStoreOptions(new JksOptions().setPath(keystorePath).setPassword(keystorePass));

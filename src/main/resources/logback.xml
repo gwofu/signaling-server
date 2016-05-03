@@ -13,7 +13,7 @@
     <file>${FILE_PATH}</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- daily rollover -->
-      <fileNamePattern>logs/videochat.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>logs/signaling-server.%d{yyyy-MM-dd}.log</fileNamePattern>
 
       <!-- keep 30 days' worth of history -->
       <maxHistory>30</maxHistory>
@@ -25,6 +25,7 @@
   </appender> 
  
   <logger name="com.devry" level="DEBUG"/>
+  <logger name="com.hazelcast" level="INFO"/>
   
   <root level="info">
     <appender-ref ref="STDOUT" />
